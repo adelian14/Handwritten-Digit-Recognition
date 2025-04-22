@@ -2,5 +2,5 @@ streamlit==1.11.0
 numpy
 opencv-python
 matplotlib
-Pillow
+Pillow==9.5.0
 tensorflow==2.10
