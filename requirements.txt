@@ -4,4 +4,3 @@ opencv-python
 matplotlib
 Pillow
 tensorflow==2.10
-protobuf==3.19.6
