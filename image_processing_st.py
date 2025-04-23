@@ -86,8 +86,9 @@ def fig_to_array(fig):
     canvas = FigureCanvas(fig)
     canvas.draw()
     width, height = fig.get_size_inches() * fig.get_dpi()
-    img = np.frombuffer(canvas.tostring_rgb(), dtype='uint8').reshape(int(height), int(width), 3)
-    return img
+    image = np.frombuffer(canvas.buffer_rgba(), dtype=np.uint8).reshape(int(height), int(width), 4)
+    rgb_image = cv2.cvtColor(image, cv2.COLOR_RGBA2RGB)
+    return rgb_image
 
 def get_digits_batches_st(original_image, image):
     col1, col2, col3 = st.columns(layout)
