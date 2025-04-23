@@ -94,7 +94,7 @@ def get_digits_batches(original_image, image, highet_thresh = 0.5, show = True):
         plt.show()
         
         cols = 4
-        rows = math.ceil(len(digit_images) / cols)
+        rows = max(math.ceil(len(digit_images) / cols),1)
 
         plt.figure(figsize=(cols*2, rows * 2))
 
@@ -136,7 +136,7 @@ def process_digits(digits_batches, thicken = False, show = True):
     
     if show:
         cols = 4
-        rows = math.ceil(len(processed_digits) / cols)
+        rows = max(math.ceil(len(processed_digits) / cols),1)
 
         plt.figure(figsize=(cols * 2, rows * 2))
 
@@ -153,10 +153,13 @@ def process_digits(digits_batches, thicken = False, show = True):
     return processed_digits
 
 def predict(processed_digits, model, image):
-    y_pred = model.predict(processed_digits, verbose = 0)
     predicted_string = ''
-    for y in y_pred:
-        predicted_string = predicted_string + str(np.argmax(y))
+    try:
+        y_pred = model.predict(processed_digits, verbose = 0)
+        for y in y_pred:
+            predicted_string = predicted_string + str(np.argmax(y))
+    except:
+        predicted_string = ' '
     plt.figure(figsize=(8, 4))
     plt.title(f'Predicted number: {predicted_string}')
     plt.imshow(image)
