@@ -193,7 +193,7 @@ def process_digits_st(digits_batches):
             processed_digits = np.array(processed_digits)
 
             cols = 4
-            rows = math.ceil(len(processed_digits) / cols)
+            rows = max(math.ceil(len(processed_digits) / cols),1)
             fig, axs = plt.subplots(rows, cols, figsize=(cols * 2, rows * 2))
             axs = axs.flatten()
 
