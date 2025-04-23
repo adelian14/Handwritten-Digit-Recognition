@@ -9,7 +9,7 @@ layout = [1,5,1]
 def get_image_st(uploaded_file):
     col1, col2, col3 = st.columns(layout)
     with col2:
-        st.subheader("1- Load and convert the image")
+        st.subheader("1- Original and grayscale images")
         image_pil = Image.open(uploaded_file).convert('RGB')
         image = np.array(image_pil)
         image_bgr = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
@@ -33,7 +33,7 @@ def get_image_st(uploaded_file):
 def threshold_image_st(gray):
     col1, col2, col3 = st.columns(layout)
     with col2:
-        st.subheader("2- Threshold the image")
+        st.subheader("2- Thresholding the image")
         with st.expander("Click to view"):
             st.info("Converts a grayscale image to a binary image using Otsu's method with inverse thresholding.")
 
@@ -55,7 +55,7 @@ def threshold_image_st(gray):
 def remove_lines_st(image):
     col1, col2, col3 = st.columns(layout)
     with col2:
-        st.subheader("3- Remove horizontal lines")
+        st.subheader("3- Removing horizontal lines")
         with st.expander("Click to view"):
             st.info("Detects and removes horizontal lines from a binary image.  \nUseful for cleaning scanned images with notebook or grid lines.") 
 
@@ -93,7 +93,7 @@ def fig_to_array(fig):
 def get_digits_batches_st(original_image, image):
     col1, col2, col3 = st.columns(layout)
     with col2:
-        st.subheader("4- Extract digits from image")
+        st.subheader("4- Extracting digits from image")
 
         with st.expander("Click to view"):
             st.info("Detects digit regions (batches) in the image using contour detection.  \nIgnores regions whose height is below a threshold fraction of the tallest contour (to eliminate small noisy components).")
@@ -162,7 +162,7 @@ def get_digits_batches_st(original_image, image):
 def process_digits_st(digits_batches):
     col1, col2, col3 = st.columns(layout)
     with col2:
-        st.subheader("5- Resize, pad, and normalize digits")
+        st.subheader("5- Resizing, padding, and normalizing digits")
 
         with st.expander("Click to view"):
             st.info("Processes a list of digit images by resizing, padding, and normalizing them for model input.  \nEach digit is resized to a height of $24$ pixels, padded to $28 \\times 28$, and normalized to $[0, 1]$.  \nOptionally thickens the digits using morphological dilation.")
