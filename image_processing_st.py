@@ -130,7 +130,7 @@ def get_digits_batches_st(original_image, image):
             plt.close(fig1)
 
             cols = 4
-            rows = math.ceil(len(digit_images) / cols)
+            rows = max(math.ceil(len(digit_images) / cols),1)
             fig2, axs = plt.subplots(rows, cols, figsize=(cols * 2, rows * 2))
             axs = axs.flatten()
 
